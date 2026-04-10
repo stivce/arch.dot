@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PREFIX="$HOME/Games/battlenet"
+GAMEID="umu-battlenet"
+INSTALL_PATH="$PREFIX/drive_c/Program Files (x86)/Battle.net/Battle.net.exe"
+SETUP_URL="https://downloader.battle.net/download/getInstaller?os=win&installer=Battle.net-Setup.exe"
+SETUP_FILE="/tmp/Battle.net-Setup.exe"
+
+# --- Prerequisites ---
+MISSING_PACMAN=()
+
+for pkg in curl lib32-glibc lib32-gcc-libs umu-launcher; do
+    pacman -Qi "$pkg" &>/dev/null || MISSING_PACMAN+=("$pkg")
+done
+
+if [[ ${#MISSING_PACMAN[@]} -gt 0 ]]; then
+    echo "==> Installing missing packages: ${MISSING_PACMAN[*]}"
+    sudo pacman -S --noconfirm --needed "${MISSING_PACMAN[@]}"
+fi
+
+if ! command -v umu-run &>/dev/null; then
+    echo "ERROR: umu-run not found even after install attempt. Aborting."
+    exit 1
+fi
+
+# --- Install Battle.net if not present ---
+if [[ ! -f "$INSTALL_PATH" ]]; then
+    echo "==> Battle.net not found, installing..."
+    curl -fLo "$SETUP_FILE" "$SETUP_URL"
+    env WINEPREFIX="$PREFIX" GAMEID="$GAMEID" umu-run "$SETUP_FILE"
+    rm -f "$SETUP_FILE"
+    echo "==> Installation complete."
+fi
+
+pkill -f 'Agent.exe|Battle.net.exe' 2>/dev/null || true
+exec env WINEPREFIX="$PREFIX" GAMEID="$GAMEID" umu-run "$INSTALL_PATH" "$@"

@@ -1,0 +1,16 @@
+.histfile
+.zsh_history
+.local/share/recently-used.xbel
+.local/share/nvim/.netrwhist
+.cache/
+.local/share/gvfs-metadata/
+.local/share/mime/
+.local/state/
+.config/gtk-3.0/bookmarks
+.config/gtk-4.0/thumbnail.png
+# SSH — allow config files, block private keys and sensitive data
+.ssh/id_*
+.ssh/known_hosts
+.ssh/authorized_keys
+.ssh/*.pem
+.ssh/*.key
