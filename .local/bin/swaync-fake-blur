@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+OUTPUT_DIR="${HOME}/.cache/swaync"
+BACKGROUND_FILE="${OUTPUT_DIR}/background_blur.png"
+PANEL_WIDTH=500
+PANEL_HEIGHT=600
+
+mkdir -p "${OUTPUT_DIR}"
+
+get_panel_geometry() {
+    local monitor_info
+    monitor_info=$(hyprctl monitors -j | jq '.[0]')
+    local width height
+    width=$(echo "$monitor_info" | jq -r '.width')
+    height=$(echo "$monitor_info" | jq -r '.height')
+
+    local x=$((width - PANEL_WIDTH))
+
+    echo "${x} 0 ${PANEL_WIDTH} ${height}"
+}
+
+GEOMETRY=$(get_panel_geometry)
+X=$(echo "$GEOMETRY" | awk '{print $1}')
+Y=$(echo "$GEOMETRY" | awk '{print $2}')
+W=$(echo "$GEOMETRY" | awk '{print $3}')
+H=$(echo "$GEOMETRY" | awk '{print $4}')
+
+TMPFILE=$(mktemp /tmp/swaync_blur_XXXXXX.png)
+grim -g "${X},${Y} ${W}x${H}" "${TMPFILE}"
+magick "${TMPFILE}" -blur 0x8 -level 10%,90% -fill black -colorize 20% "${BACKGROUND_FILE}"
+rm -f "${TMPFILE}"
+
+echo "${BACKGROUND_FILE}"

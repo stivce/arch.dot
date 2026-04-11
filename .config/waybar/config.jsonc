@@ -7,13 +7,21 @@
 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["clock"],
+    "modules-right": ["custom/packages", "clock"],
 
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate",
         "sort-by-number": true,
         "active-only": false
+    },
+
+    "custom/packages": {
+        "format": "📦 {}",
+        "exec": "~/.dotfiles/.config/waybar/scripts/packages.sh",
+        "exec-if": "true",
+        "interval": 3600,
+        "return-type": "json"
     },
 
     "hyprland/window": {

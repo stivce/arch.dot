@@ -42,7 +42,7 @@ notificationwindow, blankwindow {
 }
 
 .control-center {
-  background: var(--cc-bg);
+  background-color: rgba(18, 19, 24, 0.95);
   color: var(--text-color);
   border-radius: var(--border-radius);
   border: var(--border);
