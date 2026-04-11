@@ -33,6 +33,7 @@ alias gl='git pull'
 alias gd='git diff'
 
 # Shell
-alias sz='source $HOME/.zshrc && clear && echo "sourced zsh"'
+alias sz='source $HOME/.zshrc ; clear && echo "successfully sourced zsh\n"'
 alias p3server='python3 -m http.server 8000'
 alias ff='clear && fastfetch'
+alias z='zsh'
