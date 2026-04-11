@@ -2,6 +2,12 @@
 .zsh_history
 .local/share/recently-used.xbel
 .local/share/nvim/.netrwhist
+.local/share/opencode/
+.local/share/TelegramDesktop/
+.local/share/
+.config/dconf/
+.config/pulse/
+.config/net.imput.helium/
 .cache/
 .local/share/gvfs-metadata/
 .local/share/mime/
