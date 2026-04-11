@@ -8,23 +8,23 @@ window {
 }
 
 entry, #input {
-    background-color: #1e1f25;
-    color: #e2e2e9;
+    background-color: {{colors.surface_container.dark.hex}};
+    color: {{colors.on_surface.dark.hex}};
     border: none;
-    border-bottom: 1px solid #45464f;
+    border-bottom: 1px solid {{colors.outline_variant.dark.hex}};
     border-radius: 10px 10px 0 0;
     padding: 12px 16px;
     margin: 0;
     box-shadow: none;
     outline: none;
-    caret-color: #e2e2e9;
+    caret-color: {{colors.on_surface.dark.hex}};
 }
 
 entry:focus, #input:focus {
     outline: none;
-    background-color: #1e1f25;
+    background-color: {{colors.surface_container.dark.hex}};
     box-shadow: none;
-    border-bottom: 1px solid #b2c5ff;
+    border-bottom: 1px solid {{colors.primary.dark.hex}};
 }
 
 #inner-box {
@@ -32,8 +32,8 @@ entry:focus, #input:focus {
 }
 
 #outer-box {
-    background-color: alpha(#121318, 0.35);
-    border: 1px solid alpha(#45464f, 0.27);
+    background-color: alpha({{colors.surface.dark.hex}}, 0.35);
+    border: 1px solid alpha({{colors.outline_variant.dark.hex}}, 0.27);
     border-radius: 10px;
     padding: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
@@ -44,7 +44,7 @@ entry:focus, #input:focus {
 }
 
 #text {
-    color: #e2e2e9;
+    color: {{colors.on_surface.dark.hex}};
     padding: 2px 8px;
 }
 
@@ -54,9 +54,9 @@ entry:focus, #input:focus {
 }
 
 #entry:selected {
-    background-color: #282a2f;
+    background-color: {{colors.surface_container_high.dark.hex}};
 }
 
 #entry:selected #text {
-    color: #e2e2e9;
+    color: {{colors.on_surface.dark.hex}};
 }
