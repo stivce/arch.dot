@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# set-wallpaper — pick a wallpaper via wofi and apply matugen color scheme
+set -euo pipefail
+
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+
+WALLPAPER="$(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) \
+    | sort | xargs -I{} basename {} \
+    | wofi --dmenu --prompt "Wallpaper" \
+    | xargs -I{} realpath "$WALLPAPER_DIR/{}")"
+
+[[ -z "$WALLPAPER" ]] && exit 0
+
+echo "Setting wallpaper: $(basename "$WALLPAPER")"
+awww img "$WALLPAPER"
+
+echo "Generating color scheme with matugen..."
+matugen image "$WALLPAPER" --source-color-index 0
+
+# Reload kitty (SIGUSR1 reloads the config without restart)
+if pgrep -x kitty &>/dev/null; then
+    pkill -USR1 kitty
+fi
+
+# Reload waybar styles if running
+if pgrep -x waybar &>/dev/null; then
+    pkill -SIGUSR2 waybar
+fi
+
+echo "Done."
