@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-for cmd in fuzzel nmcli ip awk grep cut sed wl-copy notify-send; do
+for cmd in wofi nmcli ip awk grep cut sed wl-copy notify-send; do
     command -v "$cmd" >/dev/null 2>&1 || { echo "$cmd is not found"; exit 1; }
 done
 
@@ -19,7 +19,7 @@ view_info() {
         [[ -n "$mac" ]] && output+="MAC: $mac"$'\n'
     done < <(nmcli device status | tail -n +2)
 
-    local chosen=$(echo -e "$output" | fuzzel --dmenu --prompt="Select to copy: " --lines=8) || exit 0
+    local chosen=$(echo -e "$output" | wofi --dmenu --prompt="Select to copy: " --lines=8) || exit 0
     [[ -z "$chosen" ]] && exit 0
     echo -n "$chosen" | wl-copy
     notify-send "Copied to clipboard" "$chosen"
@@ -37,7 +37,7 @@ connect_wifi() {
 
     [[ ${#networks[@]} -eq 0 ]] && { notify-send "No Wi-Fi networks found"; exit 0; }
 
-    local chosen=$(printf '%s\n' "${networks[@]}" | fuzzel --dmenu --prompt="Wi-Fi Networks: " --lines=8) || exit 0
+    local chosen=$(printf '%s\n' "${networks[@]}" | wofi --dmenu --prompt="Wi-Fi Networks: " --lines=8) || exit 0
     [[ -z "$chosen" ]] && exit 0
 
     local ssid=$(echo "$chosen" | sed 's/ \[.*$//')
@@ -50,13 +50,13 @@ connect_wifi() {
     if nmcli -g NAME connection show | grep -Fxq "$ssid"; then
         nmcli connection up "$ssid" && notify-send "Connected to $ssid"
     else
-        local pass=$(fuzzel --dmenu --password --prompt="Password for $ssid: ") || exit 0
+        local pass=$(wofi --dmenu --password --prompt="Password for $ssid: ") || exit 0
         [[ -z "$pass" ]] && { notify-send "No password entered"; return 1; }
         nmcli dev wifi connect "$ssid" password - <<< "$pass" && notify-send "Connected to $ssid"
     fi
 }
 
-main_choice=$(printf "View Info\nRescan Wi-Fi\nConnect to Wi-Fi\n" | fuzzel --dmenu --prompt="Network Menu: " --lines=3) || exit 0
+main_choice=$(printf "View Info\nRescan Wi-Fi\nConnect to Wi-Fi\n" | wofi --dmenu --prompt="Network Menu: " --lines=3) || exit 0
 
 case "$main_choice" in
     "View Info") view_info ;;

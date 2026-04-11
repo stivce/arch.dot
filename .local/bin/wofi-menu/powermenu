@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-choice=$(printf "󰐥 Shutdown\n󰜉 Reboot\n󰒲 Suspend\n󍯍 Logout\n󰌾 Lock" | walker --dmenu --placeholder "Power" 2>/dev/null)
+choice=$(printf "󰐥 Shutdown\n󰜉 Reboot\n󰒲 Suspend\n󍯍 Logout\n󰌾 Lock" | wofi --dmenu --prompt "Power" 2>/dev/null)
 
 case "$choice" in
     *Shutdown) systemctl poweroff ;;
