@@ -16,7 +16,8 @@
 .config/gtk-4.0/thumbnail.png
 .config/zen/
 .config/WowUpCf/
-Pictures/
+Pictures/Screenshots/
+Pictures/screenshots/
 # SSH — allow config files, block private keys and sensitive data
 .ssh/id_*
 .ssh/known_hosts
