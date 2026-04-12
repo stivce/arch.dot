@@ -138,19 +138,19 @@ FreezeScreen {
         const maybeShare = (escapedPath) => {
             return root.shareActive ? ` && ${shareCmd} ${escapedPath}` : "";
         };
-        const shareTag = root.shareActive ? " & phone" : "";
+const shareTag = root.shareActive ? " & phone" : "";
+        const envCheck = `[ "$QUICKFRAME_NO_CLIPBOARD" = "1" ] && echo "noclip" || echo "clip"`;
         const mkdirCmd = `mkdir -p ${ePicturesDir}`;
-        const cropCmd = `magick ${eTempPath} -crop ` + `${crop.scaledWidth}x${crop.scaledHeight}` + `+${crop.cropX}+${crop.cropY}`;
+        const cropCmd = `magick ${eTempPath} -crop ${crop.scaledWidth}x${crop.scaledHeight}+${crop.cropX}+${crop.cropY}`;
         const sattyCommand = `${mkdirCmd} && ${cropCmd} png:- ` + `| satty --filename - ` + `--output-filename ${eOutputPath} --early-exit --init-tool brush ` + `&& wl-copy --type image/png < ${eOutputPath}` + `${maybeShare(eOutputPath)}; rm -f ${eTempPath}`;
         const gradiaCommand = `${mkdirCmd} && ${cropCmd} ${eOutputPath} && hyprctl dispatch exec -- "gradia ${eOutputPath} || flatpak run be.alexandervanhee.gradia ${eOutputPath}"; sleep 0.5; rm -f ${eTempPath}`;
-        const defaultSaveCommand = `${mkdirCmd} && ${cropCmd} ${eOutputPath} ` + `&& wl-copy --type image/png < ${eOutputPath}` + `${maybeShare(eOutputPath)} ` + `&& notify-send -a "HyprQuickFrame" -i ${eOutputPath} ` + `-h string:image-path:${eOutputPath} "Screenshot Saved" ` + `"Saved to ${picturesDir}"; rm -f ${eTempPath}`;
+        const clipboardCopy = `magick ${eTempPath} -crop ${crop.scaledWidth}x${crop.scaledHeight}+${crop.cropX}+${crop.cropY} /tmp/clip.png && wl-copy --type image/png < /tmp/clip.png && notify-send -a "HyprQuickFrame" "Screenshot Copied" "Copied to clipboard" && rm /tmp/clip.png`;
+        const defaultSaveCommand = `[ "$QUICKFRAME_CLIPBOARD_ONLY" = "1" ] && { ${clipboardCopy}; rm -f ${eTempPath} ${eTempSnip}; exit 0; } || { ${mkdirCmd} && ${cropCmd} ${eOutputPath} && ([ "$QUICKFRAME_NO_CLIPBOARD" != "1" ] && wl-copy --type image/png < ${eOutputPath}) ` + `${maybeShare(eOutputPath)} ` + `&& notify-send -a "HyprQuickFrame" -i ${eOutputPath} ` + `-h string:image-path:${eOutputPath} "Screenshot Saved" ` + `"Saved to ${picturesDir}"; rm -f ${eTempPath}; }`;
         const defaultTempCommand = `${cropCmd} ${eTempSnip} ` + `&& wl-copy --type image/png < ${eTempSnip}` + `${maybeShare(eTempSnip)} ` + `&& notify-send -a "HyprQuickFrame" "Screenshot Copied" ` + `"Copied to clipboard${shareTag}"; ` + `rm -f ${eTempPath} ${eTempSnip}`;
         let cmd;
         console.log("Evaluated annotationTool value:", theme.annotationTool);
         if (root.editActive)
             cmd = theme.annotationTool === "gradia" ? gradiaCommand : sattyCommand;
-        else if (root.tempActive)
-            cmd = defaultTempCommand;
         else
             cmd = defaultSaveCommand;
         screenshotProcess.command = ["sh", "-c", cmd];
@@ -360,6 +360,8 @@ FreezeScreen {
         outlineThickness: theme.outlineThickness
         globalAnimations: theme.animations
         onRegionSelected: (x, y, width, height) => {
+            console.log("WS signal handler triggered! args:", x, y, width, height);
+            console.log("WS: calling saveScreenshot");
             saveScreenshot(x, y, width, height);
         }
     }

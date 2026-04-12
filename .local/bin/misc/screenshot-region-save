@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+export QUICKFRAME_NO_CLIPBOARD=1
+hyprquickframe

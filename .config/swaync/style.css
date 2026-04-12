@@ -1,5 +1,5 @@
 :root {
-  --cc-bg: rgba(18, 19, 24, 0.85);
+  --cc-bg: rgba(18, 19, 24, 0.3);
   --noti-border-color: rgba(69, 70, 79, 0.3);
   --noti-bg: 26, 27, 33;
   --noti-bg-alpha: 0.15;
@@ -23,7 +23,7 @@
   --group-collapse-transition: opacity 400ms ease-in-out;
 }
 
-@define-color cc-bg rgba(18, 19, 24, 0.85);
+@define-color cc-bg rgba(18, 19, 24, 0.3);
 @define-color noti-border-color rgba(69, 70, 79, 0.3);
 @define-color noti-bg rgba(26, 27, 33, 0.15);
 @define-color noti-bg-opaque rgb(26, 27, 33);
@@ -42,14 +42,14 @@ notificationwindow, blankwindow {
 }
 
 .control-center {
-  background-color: rgba(18, 19, 24, 0.95);
+  background-color: rgba(18, 19, 24, 0.3);
   color: var(--text-color);
   border-radius: var(--border-radius);
   border: var(--border);
 }
 
 .control-center .control-center-list-placeholder {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .control-center .control-center-list {
@@ -121,7 +121,7 @@ notificationwindow, blankwindow {
   border: var(--border);
   padding: 0;
   transition: var(--hover-transition);
-  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  background: rgba(var(--noti-bg), 0.3);
 }
 
 .notification-row .notification-background .notification .notification-default-action {

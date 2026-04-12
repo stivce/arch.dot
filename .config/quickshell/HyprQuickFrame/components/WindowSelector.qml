@@ -127,16 +127,26 @@ Item {
             root.checkHover(mouse.x, mouse.y)
         }  
           
-        onReleased: (mouse) => {  
-            if (mouse.x >= root.selectionX && mouse.x <= root.selectionX + root.selectionWidth &&
-                mouse.y >= root.selectionY && mouse.y <= root.selectionY + root.selectionHeight) {
-                root.regionSelected(  
-                    Math.round(root.selectionX),  
-                    Math.round(root.selectionY),  
-                    Math.round(root.selectionWidth),  
-                    Math.round(root.selectionHeight)  
-                )  
+onClicked: (mouse) => {
+            if (root.selectionWidth > 0 && root.selectionHeight > 0) {
+                root.regionSelected(
+                    Math.round(root.selectionX),
+                    Math.round(root.selectionY),
+                    Math.round(root.selectionWidth),
+                    Math.round(root.selectionHeight)
+                )
             }
-        }  
+        }
+
+        onReleased: (mouse) => {
+            if (root.selectionWidth > 0 && root.selectionHeight > 0) {
+                root.regionSelected(
+                    Math.round(root.selectionX),
+                    Math.round(root.selectionY),
+                    Math.round(root.selectionWidth),
+                    Math.round(root.selectionHeight)
+                )
+            }
+        }
     }  
 }

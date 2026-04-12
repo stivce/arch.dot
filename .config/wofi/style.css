@@ -4,15 +4,15 @@
 }
 
 window {
-    background-color: transparent;
+    background-color: alpha(#111318, 0.3);
+    border-radius: 10px;
 }
 
 entry, #input {
-    background-color: #1e1f25;
+    background-color: alpha(#1e1f25, 0.5);
     color: #e2e2e9;
     border: none;
-    border-bottom: 1px solid #45464f;
-    border-radius: 10px 10px 0 0;
+    border-radius: 0;
     padding: 12px 16px;
     margin: 0;
     box-shadow: none;
@@ -22,18 +22,19 @@ entry, #input {
 
 entry:focus, #input:focus {
     outline: none;
-    background-color: #1e1f25;
+    background-color: alpha(#1e1f25, 0.5);
     box-shadow: none;
-    border-bottom: 1px solid #b2c5ff;
+    border-bottom: 1px solid #adc6ff;
 }
 
 #inner-box {
     background-color: transparent;
+    border-radius: 10px;
 }
 
 #outer-box {
-    background-color: alpha(#121318, 0.35);
-    border: 1px solid alpha(#45464f, 0.27);
+    background-color: alpha(#111318, 0.35);
+    border: 1px solid alpha(#44474f, 0.27);
     border-radius: 10px;
     padding: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);

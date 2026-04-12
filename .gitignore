@@ -15,6 +15,7 @@
 .config/gtk-3.0/bookmarks
 .config/gtk-4.0/thumbnail.png
 .config/zen/
+.config/WowUpCf/
 # SSH — allow config files, block private keys and sensitive data
 .ssh/id_*
 .ssh/known_hosts
