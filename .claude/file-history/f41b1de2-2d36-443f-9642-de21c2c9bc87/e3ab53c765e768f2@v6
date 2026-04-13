@@ -1,0 +1,29 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 0,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["clock"],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "sort-by-number": true,
+        "active-only": false
+    },
+
+    "hyprland/window": {
+        "max-length": 80,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": "{:%H:%M  %a %d %b}",
+        "tooltip": false,
+        "on-click": "swaync-client -t -sw"
+    }
+}

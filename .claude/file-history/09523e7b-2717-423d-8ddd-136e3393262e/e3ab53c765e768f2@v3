@@ -2,7 +2,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 56,
+    "height": 36,
     "spacing": 0,
 
     "modules-left": ["hyprland/workspaces"],

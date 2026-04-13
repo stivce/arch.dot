@@ -1,0 +1,13 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    color: #ffffff;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: rgba(18, 19, 24, 0.75);
+    border-bottom: 1px solid rgba(69, 70, 79, 0.3);
+}

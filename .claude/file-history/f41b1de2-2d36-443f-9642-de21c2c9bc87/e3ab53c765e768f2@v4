@@ -1,0 +1,11 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 0,
+
+    "modules-left": [],
+    "modules-center": [],
+    "modules-right": []
+}

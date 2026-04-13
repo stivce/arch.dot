@@ -1,18 +1,18 @@
 * {
     font-family: "JetBrainsMono Nerd Font";
-    font-size: 18px;
+    font-size: 14px;
 }
 
 window {
-    background-color: alpha({{colors.surface.dark.hex}}, 0.3);
-    border-radius: 10px;
+    background-color: transparent;
 }
 
 entry, #input {
-    background-color: alpha({{colors.surface_container.dark.hex}}, 0.5);
+    background-color: {{colors.surface_container.dark.hex}};
     color: {{colors.on_surface.dark.hex}};
     border: none;
-    border-radius: 0;
+    border-bottom: 1px solid {{colors.outline_variant.dark.hex}};
+    border-radius: 10px 10px 0 0;
     padding: 12px 16px;
     margin: 0;
     box-shadow: none;
@@ -22,14 +22,13 @@ entry, #input {
 
 entry:focus, #input:focus {
     outline: none;
-    background-color: alpha({{colors.surface_container.dark.hex}}, 0.5);
+    background-color: {{colors.surface_container.dark.hex}};
     box-shadow: none;
     border-bottom: 1px solid {{colors.primary.dark.hex}};
 }
 
 #inner-box {
     background-color: transparent;
-    border-radius: 10px;
 }
 
 #outer-box {

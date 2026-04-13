@@ -1,40 +1,39 @@
 * {
     font-family: "JetBrainsMono Nerd Font";
-    font-size: 18px;
+    font-size: 14px;
 }
 
 window {
-    background-color: alpha(#11140f, 0.3);
-    border-radius: 10px;
+    background-color: transparent;
 }
 
 entry, #input {
-    background-color: alpha(#1d211b, 0.5);
-    color: #e1e4da;
+    background-color: #1e1f25;
+    color: #e2e2e9;
     border: none;
-    border-radius: 0;
+    border-bottom: 1px solid #45464f;
+    border-radius: 10px 10px 0 0;
     padding: 12px 16px;
     margin: 0;
     box-shadow: none;
     outline: none;
-    caret-color: #e1e4da;
+    caret-color: #e2e2e9;
 }
 
 entry:focus, #input:focus {
     outline: none;
-    background-color: alpha(#1d211b, 0.5);
+    background-color: #1e1f25;
     box-shadow: none;
-    border-bottom: 1px solid #a5d395;
+    border-bottom: 1px solid #b2c5ff;
 }
 
 #inner-box {
     background-color: transparent;
-    border-radius: 10px;
 }
 
 #outer-box {
-    background-color: alpha(#11140f, 0.35);
-    border: 1px solid alpha(#43483f, 0.27);
+    background-color: alpha(#121318, 0.35);
+    border: 1px solid alpha(#45464f, 0.27);
     border-radius: 10px;
     padding: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
@@ -45,7 +44,7 @@ entry:focus, #input:focus {
 }
 
 #text {
-    color: #e1e4da;
+    color: #e2e2e9;
     padding: 2px 8px;
 }
 
@@ -55,9 +54,9 @@ entry:focus, #input:focus {
 }
 
 #entry:selected {
-    background-color: #272b25;
+    background-color: #282a2f;
 }
 
 #entry:selected #text {
-    color: #e1e4da;
+    color: #e2e2e9;
 }
