@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Battle.net
-Comment=Blizzard Battle.net Launcher
-Exec=bash -c "export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; notify-send 'Starting Battle.net & WowUp' -i battle.net; hyprctl dispatch workspace 4 & /home/sn0w/.dotfiles/.local/bin/misc/battlenet & /usr/bin/wowup-cf & while ! hyprctl clients -j 2>/dev/null | grep -qi 'battle\.net'; do sleep 1; done; notify-send 'Ready' 'Battle.net & WowUp launched' -i battle.net"
-Icon=battle.net
-Terminal=false
-Type=Application
-Categories=Game;
-StartupWMClass=battle.net launcher.exe

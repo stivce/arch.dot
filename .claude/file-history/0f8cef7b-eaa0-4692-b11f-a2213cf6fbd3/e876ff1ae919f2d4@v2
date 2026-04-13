@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Screenshot a selected region or window (click on a highlighted window to snap to it)
-# and copy the result to clipboard.
-
-grim -g "$(hyprctl clients -j | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp)" - | wl-copy

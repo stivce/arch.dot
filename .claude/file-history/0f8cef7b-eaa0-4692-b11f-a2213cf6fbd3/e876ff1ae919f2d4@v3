@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Screenshot a selected region or window and copy to clipboard.
-# Press space while the selector is open to switch to window-select mode.
-
-hyprshot -m region --clipboard-only

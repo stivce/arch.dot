@@ -1,3 +1,0 @@
-# Auto-detect monitor: preferred resolution, auto position, scale 1
-# Override this file per machine if needed
-monitor=,preferred,auto,1
