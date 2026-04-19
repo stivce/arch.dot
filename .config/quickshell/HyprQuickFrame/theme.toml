@@ -5,11 +5,11 @@ accentText = "#11111b"
 # Dim overlay opacity when selecting (0.0 - 1.0)
 dimOpacity = 0.6
 # Corner radius on selection outline
-borderRadius = 10
+borderRadius = 7
 # Selection outline thickness
-outlineThickness = 2
+outlineThickness = 1
 # Distance from bottom edge to the bar
-bottomMargin = 60
+bottomMargin = 40
 # Global animation toggle (true/false)
 animations = true
 # Tool to use for the "edit" screenshot action (e.g., "satty" or "gradia")

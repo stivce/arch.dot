@@ -11,14 +11,13 @@
   --text-color: rgb(255, 255, 255);
   --text-color-disabled: rgba(255, 255, 255, 0.4);
   --bg-selected: rgba(178, 197, 255, 0.3);
-  --notification-icon-size: 64px;
+--notification-icon-size: 43px;
   --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
-  --notification-group-icon-size: 32px;
-  --border: 1px solid var(--noti-border-color);
-  --border-radius: 12px;
-  --notification-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --font-size-body: 14px;
-  --font-size-summary: 15px;
+  --notification-group-icon-size: 21px;
+  --border-radius: 8px;
+  --notification-shadow: 0 3px 11px rgba(0, 0, 0, 0.4);
+  --font-size-body: 9px;
+  --font-size-summary: 10px;
   --hover-transition: background 0.15s ease-in-out;
   --group-collapse-transition: opacity 400ms ease-in-out;
 }

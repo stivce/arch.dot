@@ -20,3 +20,7 @@ output_path = "~/.config/gtk-4.0/gtk.css"
 [templates.wofi]
 input_path = "~/.config/matugen/templates/wofi.css"
 output_path = "~/.config/wofi/style.css"
+
+[templates.waybar]
+input_path = "~/.config/matugen/templates/waybar.css"
+output_path = "~/.config/waybar/colors.css"
