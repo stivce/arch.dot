@@ -22,7 +22,7 @@
 
     "custom/packages": {
         "format": "📦 {}",
-        "exec": "~/.dotfiles/.config/waybar/scripts/packages.sh",
+        "exec": "$HOME/.config/waybar/scripts/packages.sh",
         "exec-if": "true",
         "interval": 3600,
         "return-type": "json"
@@ -53,7 +53,7 @@
 
     "custom/battery": {
         "format": "{}",
-        "exec": "~/.dotfiles/.config/waybar/scripts/battery.sh",
+        "exec": "$HOME/.config/waybar/scripts/battery.sh",
         "interval": 30,
         "return-type": "text"
     }

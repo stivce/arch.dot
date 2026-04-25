@@ -4,25 +4,30 @@ set -euo pipefail
 
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
 
-WALLPAPER="$(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) \
-    | sort | xargs -I{} basename {} \
-    | wofi --dmenu --prompt "Wallpaper" \
-    | xargs -I{} realpath "$WALLPAPER_DIR/{}")"
+mapfile -t wallpapers < <(find "$WALLPAPER_DIR" -maxdepth 1 -type f \
+    \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) \
+    | sort)
 
-[[ -z "$WALLPAPER" ]] && exit 0
+names=()
+for w in "${wallpapers[@]}"; do
+    names+=("$(basename "$w")")
+done
 
-echo "Setting wallpaper: $(basename "$WALLPAPER")"
+selected=$(printf '%s\n' "${names[@]}" | wofi --dmenu --prompt "Wallpaper")
+[[ -z "$selected" ]] && exit 0
+
+WALLPAPER="$WALLPAPER_DIR/$selected"
+
+echo "Setting wallpaper: $selected"
 awww img "$WALLPAPER"
 
 echo "Generating color scheme with matugen..."
 matugen image "$WALLPAPER" --source-color-index 0
 
-# Reload kitty (SIGUSR1 reloads the config without restart)
 if pgrep -x kitty &>/dev/null; then
     pkill -USR1 kitty
 fi
 
-# Reload waybar styles if running
 if pgrep -x waybar &>/dev/null; then
     pkill -SIGUSR2 waybar
 fi

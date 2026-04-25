@@ -1,11 +1,14 @@
-#!/bin/bash
-PERCENTAGE=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{print $2}')
-STATE=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk '{print $2}')
+#!/usr/bin/env bash
+set -uo pipefail
 
-if [ "$STATE" = "charging" ]; then
-    echo "⚡ $PERCENTAGE"
-elif [ "$STATE" = "plugged" ]; then
-    echo "🔌 $PERCENTAGE"
-else
-    echo "🔋 $PERCENTAGE"
-fi
+BATTERY_PATH="/org/freedesktop/UPower/devices/battery_BAT0"
+BATTERY_INFO=$(upower -i "$BATTERY_PATH" 2>/dev/null) || { echo "No battery"; exit 0; }
+
+PERCENTAGE=$(awk '/percentage/ {print $2}' <<< "$BATTERY_INFO")
+STATE=$(awk '/state/ {print $2}' <<< "$BATTERY_INFO")
+
+case "$STATE" in
+    charging)                echo "⚡ $PERCENTAGE" ;;
+    plugged-in|fully-charged) echo "🔌 $PERCENTAGE" ;;
+    *)                       echo "🔋 $PERCENTAGE" ;;
+esac

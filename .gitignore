@@ -25,3 +25,9 @@ Pictures/screenshots/
 .ssh/authorized_keys
 .ssh/*.pem
 .ssh/*.key
+# macOS metadata
+.DS_Store
+# OBS Studio — runtime/generated files (password, logs, profiler data)
+.config/obs-studio/logs/
+.config/obs-studio/profiler_data/
+.config/obs-studio/plugin_config/obs-websocket/config.json

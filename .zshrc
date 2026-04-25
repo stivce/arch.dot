@@ -25,8 +25,4 @@ if [[ -d "$ZSHRC_D" ]]; then
   unset _f
 fi
 
-# opencode (if exists)
 [[ -d "$HOME/.opencode/bin" ]] && export PATH="$HOME/.opencode/bin:$PATH"
-
-# opencode
-export PATH=/home/sn0w/.opencode/bin:$PATH
