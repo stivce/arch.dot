@@ -25,3 +25,5 @@ Pictures/screenshots/
 .ssh/authorized_keys
 .ssh/*.pem
 .ssh/*.key
+!.local/share/applications/battlenet.desktop
+!.local/share/applications/battlenet.desktop
